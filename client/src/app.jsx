@@ -2,6 +2,7 @@ import React from "react"
 import axios from "axios"
 import Charts from "./components/chart.jsx"
 import List from "./components/List.jsx"
+import Dates from "./components/Dates.jsx"
 import "bootstrap/dist/css/bootstrap.min.css"
 import {Container, Row, Col, Button} from "react-bootstrap"
 
@@ -52,13 +53,13 @@ class App extends React.Component {
                 </Row>
                 <Row style={{margin: '20px'}}>
                     <Col>
-                    {/* <Button onClick={}>Monthly</Button> */}
+                    <Button >Weekly</Button>
                     </Col>
                     <Col>
-                    {/* <Button onClick={}>Weekly</Button> */}
+                    <Button >Hourly</Button>
                     </Col>
                     <Col>
-                    {/* <Button onClick={}>Hourly</Button> */}
+                        <Dates />
                     </Col>
                 </Row>
                 <Row>

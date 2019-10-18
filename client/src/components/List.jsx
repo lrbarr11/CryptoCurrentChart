@@ -1,18 +1,31 @@
-import react from 'react'
-import {table, thead, tr, th, tbody} from 'react-bootstrap'
+import React from 'react'
+import {Table} from 'react-bootstrap'
 
-function List(props) {
+const List = props => {
     var closings = [];
-    for(var dates in props.current){
-        closings.unshift({date: dates, value: props.current[dates]})
-    }
+    var yesterday = 0;
+    var difference = 0;
+    var style = 'red';
+    for(var dates in props.current.bpi){
+        difference = props.current.bpi[dates] - props.current.bpi[yesterday] || 0;
+        if(difference > 0){
+            style = 'green';
+        } else {
+            style = 'red';
+        }
+        closings.unshift({date: dates, value: props.current.bpi[dates], difference: difference, style: style})
 
+        yesterday = dates;
+    }
+    console.log('list: ', closings)
     return (
-        <table>
+       
+        <Table>
             <thead>
                 <tr>
-                    <th scope="col">date</th>
-                    <th scope='col'>closing value</th>
+                    <th scope="col">Date</th>
+                    <th scope='col'>Closing Value</th>
+                    <th scope="col">Difference</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,11 +34,13 @@ function List(props) {
                 <tr>
                     <th>{closing.date}</th>
                     <th>{closing.value}</th>
+                    <th style={{color: closing.style}}>{closing.difference}</th>
                 </tr>
                 )
             })}
             </tbody>
-        </table>
+        </Table>
+       
     )
 }
 
