@@ -59,7 +59,7 @@ class App extends React.Component {
                     <Button >Hourly</Button>
                     </Col>
                     <Col>
-                        <Dates />
+                        <Dates current={this.state.current}/>
                     </Col>
                 </Row>
                 <Row>

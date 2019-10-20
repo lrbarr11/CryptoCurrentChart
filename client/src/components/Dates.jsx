@@ -1,43 +1,62 @@
-import React, {useState} from 'react'
-import {Button, Modal, Form} from "react-bootstrap"
+import React from 'react'
+import {useState} from 'react'
+import {Button, Modal, Form, Row, Col} from "react-bootstrap"
 
-const Dates = props => {
+class Dates extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            show: false
+        }
+        this.handleClose = this.handleClose.bind(this)
+        this.handleShow  = this.handleShow.bind(this)
+    }
 
-    const [show, setShow] = useState(false);
+    
+    
+     handleClose() {
+         this.setState({
+             show: false
+         })
+     }
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+     handleShow() {
+         this.setState({
+             show: true
+         })
+     }
 
-
-    return (
+    render() {
+        return (
         <>
-        <Button onClick={handleShow}>Date Range</Button>
+        <Button onClick={this.handleShow}>Date Range</Button>
 
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Input Date Range</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Row>
-                        <Form.Col>
+                    <Row>
+                        <Col>
                             <Form.Label>From: </Form.Label>
                             <Form.Control type="date" placeholder="From" />
-                        </Form.Col>
-                        <Form.Col>
+                        </Col>
+                        <Col>
                             <Form.Label>To: </Form.Label>
                             <Form.Control type="date" placeholder="To" />
-                        </Form.Col>
-                    </Form.Row>
+                        </Col>
+                    </Row>
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant='secondary' onClick={handleClose}>Cancel</Button>
-                <Button variant="primary" onClick={handleClose}>Submit</Button>
+                <Button variant='secondary' onClick={this.handleClose}>Cancel</Button>
+                <Button variant="primary" onClick={this.handleClose}>Submit</Button>
             </Modal.Footer>
         </Modal>
         </>
-    );
-}
+        )
+    }
+};
 
-export default Dates
+export default Dates;

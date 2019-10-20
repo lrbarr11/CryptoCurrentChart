@@ -18,6 +18,7 @@ const List = props => {
         yesterday = dates;
     }
     console.log('list: ', closings)
+    
     return (
        
         <Table>
