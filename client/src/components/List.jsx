@@ -5,17 +5,21 @@ const List = props => {
     var closings = [];
     var yesterday = 0;
     var difference = 0;
+    var date;
     var style = 'red';
-    for(var dates in props.current.bpi){
-        difference = props.current.bpi[dates] - props.current.bpi[yesterday] || 0;
+    for(var increment=1; increment < props.current.length; increment++){
+        difference = props.current[increment].close - props.current[yesterday].close;
         if(difference > 0){
             style = 'green';
         } else {
             style = 'red';
         }
-        closings.unshift({date: dates, value: props.current.bpi[dates], difference: difference, style: style})
+        date = new Date(props.current[increment].time * 1000);
+        date = date.toDateString()
 
-        yesterday = dates;
+        closings.unshift({date: date, value: props.current[increment].close, difference: difference, style: style})
+
+        yesterday = increment;
     }
     console.log('list: ', closings)
     

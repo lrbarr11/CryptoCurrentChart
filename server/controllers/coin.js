@@ -1,14 +1,14 @@
-const {getMonth} = require('../models/month')
+const {getData} = require('../models/coin')
 
 
 module.exports = {
     get: (req, res) => {
-        getMonth(req)
+        getData(req)
         .then((info) => {
             res.send(info.data)
         })
         .catch((error) => {
-            console.log("error in get month data: ", error)
+            console.log("error in get data (coin): ", error)
             res.sendStatus(500);
         })
     }
